@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -33,7 +32,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend/assets'), 
 )
-print(STATICFILES_DIRS)
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -41,7 +39,7 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'frontend/webpack-stats.json'),
     }
 }
-print(os.path.join(BASE_DIR, 'frontend/webpack-stats.json'))
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'example',
+    'student',
     'webpack_loader',
 ]
 
