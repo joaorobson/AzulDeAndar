@@ -12,6 +12,16 @@ class Telephone(models.Model):
             blank=True
     )
 
+class Class(models.Model):
+
+    year = models.IntegerField()
+
+    letter = models.CharField(
+            max_length=1,
+    )
+
+
+
 class Student(models.Model):
 
     name = models.CharField(
@@ -21,7 +31,8 @@ class Student(models.Model):
 
     image = fields.ImageField(
             upload_to="images/",
-            help_text=_("Coloque a foto do aluno.")
+            help_text=_("Coloque a foto do aluno."),
+            blank=True
     )
 
     father_name = models.CharField(
@@ -42,19 +53,9 @@ class Student(models.Model):
             blank=True
     )
 
-    telephone = models.ForeignKey(Telephone,on_delete=models.CASCADE)
+    telephone = models.ForeignKey(Telephone,on_delete=models.CASCADE, blank=True)
 
+    school_class = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)    
 
-
-
-class Class(models.Model):
-
-    year = models.IntegerField()
-
-    letter = models.CharField(
-            max_length=1,
-    )
-
-    student = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True)    
 
 
