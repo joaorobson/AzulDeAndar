@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'example',
     'student',
+    'django_extensions',
+    'rest_framework',
     'webpack_loader',
 ]
 
