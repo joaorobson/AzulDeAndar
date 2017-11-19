@@ -1,6 +1,7 @@
 var path = require("path")
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   context: __dirname,
@@ -22,6 +23,17 @@ module.exports = {
        query: {
           presets: ['es2015', 'react']
         }}, // to transform JSX into JS
+{
+				test: /\.css$/,
+				loader: ['style-loader','css-loader','sass-loader']
+			},{
+			test: /\.(png|jpg|jpeg|gif|svg)$/,
+			loader: 'url-loader'
+			},	
+			{
+			 test: /\.(woff|woff2|ttf|svg|eot)$/,
+			loader: 'url-loader'
+		},
     ],
   },
 
