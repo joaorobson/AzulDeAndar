@@ -19,7 +19,7 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader',
+      { test: /\.jsx?$/, exclude: [/node_modules/, /stylesheet/], loader: 'babel-loader',
        query: {
           presets: ['es2015', 'react'],
           plugins: ["transform-class-properties"]
@@ -39,7 +39,7 @@ module.exports = {
   },
 
   resolve: {
-    modulesDirectories: ['node_modules', 'bower_components'],
-    extensions: ['', '.js', '.jsx']
+    modulesDirectories: ['stylesheet', 'node_modules', 'bower_components'],
+    extensions: ['', '.js', '.jsx', 'css']
   },
 }
