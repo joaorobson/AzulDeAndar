@@ -3,7 +3,7 @@ import React from 'react'
 import MenuLayout from "./menu/menu"
 import Routes from "./routes/routes"
 import {BrowserRouter} from 'react-router-dom';
-require('semantic-ui-css/semantic.css');
+require('../../stylesheet/semantic.css');
 
 
 class App extends React.Component{
