@@ -1,7 +1,24 @@
-var ReactDOM = require('react-dom')
-var React = require('react')
-const element = <h1>iiadojdafijnaf</h1>;
+import ReactDOM from 'react-dom'
+import React from 'react'
+import MenuLayout from "./menu/menu"
+import Routes from "./routes/routes"
+import {BrowserRouter} from 'react-router-dom';
+require('semantic-ui-css/semantic.css');
 
 
-ReactDOM.render(element, document.getElementById('react-app'))
+class App extends React.Component{
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <MenuLayout />
+          <Routes />
+        </div>
+      </BrowserRouter>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('react-app'))
 
