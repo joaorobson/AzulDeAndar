@@ -4,14 +4,6 @@ from smartfields import fields
 # Create your models here.
 
 
-class Telephone(models.Model):
-
-    telephone_number = models.CharField(
-            max_length=15,
-            help_text=_("Qual o telefone para contato?"),
-            blank=True
-    )
-
 class Class(models.Model):
 
     year = models.IntegerField()
@@ -19,6 +11,9 @@ class Class(models.Model):
     letter = models.CharField(
             max_length=1,
     )
+
+    def __str__(self):
+        return str(self.year) + "° " + self.letter
 
 
 
@@ -53,9 +48,20 @@ class Student(models.Model):
             blank=True
     )
 
-    telephone = models.ForeignKey(Telephone,on_delete=models.CASCADE, blank=True)
 
     school_class = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)    
 
+    def __str__(self):
+        return "Estudante " + self.name
 
+
+class Telephone(models.Model):
+
+    telephone_number = models.CharField(
+            max_length=15,
+            help_text=_("Qual o telefone para contato?"),
+            blank=True
+    )
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE,null=True, blank=True)
 
