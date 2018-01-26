@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'AzulDeAndar',
     'example',
     'student',
     'django_extensions',
@@ -72,7 +73,7 @@ ROOT_URLCONF = 'AzulDeAndar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': os.path.join(BASE_DIR, 'example/templates'),
+        'DIRS': os.path.join(BASE_DIR, 'AzulDeAndar/templates'),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
