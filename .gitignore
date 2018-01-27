@@ -1,5 +1,6 @@
 /frontend/webpack-stats.json
 /frontend/assets/bundles/
+/backend/images/
 node_modules
 
 # Byte-compiled / optimized / DLL files
