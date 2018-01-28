@@ -6,9 +6,6 @@ from . import views
 
 router = routers.DefaultRouter()
 
-router.register(r'bla', views.StudentViewSet)
+router.register(r'students', views.StudentViewSet)
 
-urlpatterns = [                                                                 
-    url(r'^$', views.index, name='index'),                                      
-    url(r'^', include(router.urls))
-] 
+urlpatterns = router.urls                                           
