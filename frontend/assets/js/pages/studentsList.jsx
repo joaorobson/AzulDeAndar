@@ -2,34 +2,32 @@ import React, {Component} from 'react'
 import {getData} from '../resources/getData.jsx' 
 import {Grid, Container, Button, Checkbox, Form } from 'semantic-ui-react'
 import StudentCard from '../components/studentCard'
-         
+        
 export default class StudentsList extends Component {
 
   constructor() {
     super()
-    this.state = {students_images:[]}
+    this.state = {students_data:[]}
     this.mountStudentsCards.bind(this)
   }
 
 
   getStudentsData = () => {
 	getData("/api/students/",(data) => {
-      this.setState({students_images: [...this.state.students_images,data[0].image]})
+      this.setState({students_data: data})
       console.log(data)
-      console.log(this.state.students_images)
+      console.log(this.state.students_data)
 	 })
   }
 
   mountStudentsCards = () => {
-    if(this.state.students_images.length > 0){
-    const gameList = this.state.students_images.map((image, index) => {
+    const gameList = this.state.students_data.map((data, index) => {
       return(<Grid.Column key={index} >
-        <StudentCard image={image} />
+        <StudentCard image={data.image} />
       </Grid.Column>)
     })
     console.log(gameList.length)
     return gameList;
-    }
   }
 
   componentWillMount = () => {
