@@ -27,6 +27,10 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'backend')
+
+MEDIA_URL = '/images/'
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend/assets'), 
 )
@@ -39,6 +43,8 @@ WEBPACK_LOADER = {
 }
 print(os.path.join(BASE_DIR, 'frontend/webpack-stats.json'))
 # Application definition
+
+SECRET_KEY=os.environ.get('SECRET_KEY')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
