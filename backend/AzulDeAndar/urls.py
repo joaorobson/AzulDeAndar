@@ -16,12 +16,18 @@ Including another URLconf
 from django.conf.urls import include,url
 from django.contrib import admin
 from . import views 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^.*$', views.index, name="index"),
+    url(r'^api/', include('student.urls')),
+    url(r'^phillips/', views.index, name="index"),
     url(r'', include('example.urls')),
     url(r'student/', include('student.urls')),
-    url(r'^api/', include('student.urls')),
 
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
