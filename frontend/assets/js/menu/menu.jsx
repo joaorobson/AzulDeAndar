@@ -21,7 +21,6 @@ export default class MenuLayout extends Component {
   }
   load(){
   const a = '/api/bla/';
-  getData(a, (list) => {console.log(list)});
   }
   render() {
     const { activeItem } = this.state
