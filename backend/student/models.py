@@ -1,21 +1,52 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from smartfields import fields
-# Create your models here.
+import datetime
+
+class Teacher(models.Model):
+    
+    name = models.CharField(
+            max_length=100,
+            help_text=_("Qual o nome do professor?")    
+    )
+
+
+    def __str__(self):
+        return "Prof. " +  self.name
+
+
+class School(models.Model):
+
+    name = models.CharField(
+            max_length=100,
+            help_text=_("Qual o nome da escola do aluno?")
+    )
+
+    def __str__(self):
+        return self.name
 
 
 class Class(models.Model):
 
-    year = models.IntegerField()
 
-    letter = models.CharField(
-            max_length=1,
+    school = models.ForeignKey(School,on_delete=models.SET_DEFAULT, default=1) 
+
+    name = models.CharField(
+        max_length=30,
+        help_text=_("Qual a turma do aluno?"),
+        blank=True,
+        default="Sem turma"
     )
 
+    YEAR_CHOICES = []
+
+    for i in range(2015, datetime.datetime.now().year+1):
+        YEAR_CHOICES.append((i,i))
+
+    reference_year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year)
+
     def __str__(self):
-        return str(self.year) + "° " + self.letter
-
-
+        return str(self.reference_year) + '/' + self.name + "/" + self.school.name 
 
 class Student(models.Model):
 
@@ -48,11 +79,20 @@ class Student(models.Model):
             blank=True
     )
 
+    special_education_needs = models.CharField(
+            max_length=200,
+            help_text=_("Qual a necessidade de educação especial?"),
+            default="Nenhuma",
+    )
 
-    school_class = models.ForeignKey(Class, on_delete=models.SET_NULL, null=True)    
+
+    school_class = models.ManyToManyField(Class, blank=True)
+
+    teacher = models.ManyToManyField(Teacher, blank=True)
 
     def __str__(self):
         return "Estudante " + self.name
+
 
 
 class Telephone(models.Model):
