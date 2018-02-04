@@ -23,7 +23,7 @@ export default class StudentsList extends Component {
   mountStudentsCards = () => {
     const gameList = this.state.students_data.map((data, index) => {
       return(<Grid.Column key={index} >
-        <StudentCard image={data.image} />
+        <StudentCard data={data} />
       </Grid.Column>)
     })
     console.log(gameList.length)
@@ -42,9 +42,11 @@ export default class StudentsList extends Component {
   render() {
     const a = this.mountStudentsCards()
     return (
-        <Grid columns={4} >
+        <Container>
+        <Grid columns={2} >
         {this.mountStudentsCards()}
         </Grid>
+        </Container>
      )
  }
 
