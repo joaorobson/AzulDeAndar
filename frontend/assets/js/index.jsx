@@ -5,7 +5,8 @@ import StudentCard from "./components/studentCard"
 import Routes from "./routes/routes"
 import {BrowserRouter} from 'react-router-dom';
 import StudentsList from './pages/studentsList'
-require('../../stylesheet/semantic.css');
+import 'semantic-ui-css/semantic.min.css';
+
 
 
 class App extends React.Component{
@@ -15,7 +16,6 @@ class App extends React.Component{
       <BrowserRouter>
         <div>
           <MenuLayout />
-          <StudentsList />
           <Routes />
         </div>
       </BrowserRouter>
