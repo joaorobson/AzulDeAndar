@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -57,6 +58,11 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'webpack_loader',
+    'rest_auth',
+    'django.contrib.sites',
+    'rest_auth.registration',
+    'allauth',
+    'allauth.account',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +125,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_ALLOW_REFRESH': True,
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+
+REST_USE_JWT = True
+
+SITE_ID = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
