@@ -18,16 +18,22 @@ from django.contrib import admin
 from . import views 
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('student.urls')),
-    url(r'^phillips/', views.index, name="index"),
+    url(r'^/', views.index, name="index"),
     url(r'', include('example.urls')),
     url(r'student/', include('student.urls')),
+    url(r'^api-token-auth/', obtain_jwt_token),
 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+url_any = [url(r'^.*$', views.index, name="any")]
+urlpatterns += url_any
 
