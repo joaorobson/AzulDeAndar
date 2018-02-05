@@ -7,7 +7,12 @@
   </head>
 
   <body>
+{% if user.is_authenticated %}
     <div id="react-app"></div>
     {% render_bundle 'main' %}
+{% else %}
+  <p>Você não está logado</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
   </body>
 </html>

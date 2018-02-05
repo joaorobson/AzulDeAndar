@@ -31,6 +31,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'backend')
 
 MEDIA_URL = '/images/'
 
+
+LOGIN_EXEMPT = (
+)
+
+
+CSRF_COOKIE_SECURE=True
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend/assets'), 
 )
@@ -63,6 +70,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'allauth',
     'allauth.account',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'AzulDeAndar.urls'
 
@@ -126,25 +135,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
-    'JWT_ALLOW_REFRESH': True,
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
-REST_USE_JWT = True
+LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 1
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
