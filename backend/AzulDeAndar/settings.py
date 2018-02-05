@@ -84,6 +84,7 @@ MIDDLEWARE = [
 ]
 
 
+
 ROOT_URLCONF = 'AzulDeAndar.urls'
 
 TEMPLATES = [
@@ -137,11 +138,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
 }

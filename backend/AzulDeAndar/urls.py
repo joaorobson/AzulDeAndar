@@ -26,6 +26,7 @@ from django.contrib.auth.decorators import login_required
 
 
 urlpatterns = [
+    url(r'^logout/$', views.logout_user),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('student.urls')),
     url(r'^ola/',include('django.contrib.auth.urls')),
