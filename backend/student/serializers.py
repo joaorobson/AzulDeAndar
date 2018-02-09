@@ -1,6 +1,13 @@
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import User
 
+
+
+class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = User
+            fields = ('username',)
 
 class TelephoneSerializer(serializers.ModelSerializer):
 
@@ -27,11 +34,9 @@ class StudentSerializer(serializers.ModelSerializer):
                   'responsible',
                   'adress',
                   'school_class',
-                  'teacher',
                   'convert_date_of_birth',
                   'get_telephone_numbers',
                   'special_education_needs',
                   'schools_names',
-                  'get_teachers_names',
                   ]
 

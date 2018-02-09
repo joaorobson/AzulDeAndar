@@ -42,7 +42,6 @@ export default class StudentCard extends Component {
       <Card.Content style={{color:"#5f5d5d"}}><strong>Responsável:</strong> {this.props.data.responsible}</Card.Content>
       <Card.Content style={{color:"#5f5d5d"}}><strong>Endereço:</strong> {this.props.data.adress}</Card.Content>
       <Card.Content style={{color:"#5f5d5d"}}><strong>Telefone(s):</strong> {this.props.data.get_telephone_numbers.join("/")}</Card.Content>
-      <Card.Content style={{color:"#5f5d5d"}}><strong>Professor(es):</strong> {this.props.data.get_teachers_names.join(", ")}</Card.Content>
       <Card.Content style={{color:"#5f5d5d"}}><strong>NEE:</strong> {this.props.data.special_education_needs} </Card.Content>
       </Card.Content>
       {this.mountSchoolHistoric()}

@@ -47,11 +47,22 @@ class Class(models.Model):
 
     reference_year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.datetime.now().year)
 
+    teacher = models.ManyToManyField(Teacher, blank=True)
+
+    @property
+    def get_teachers_names(self):
+        return list(self.teacher.values_list( \
+                    'name', flat=True))
     class Meta:
         unique_together = ('name', 'reference_year')
 
     def __str__(self):
-        return str(self.reference_year) + ': ' + self.name + "/" + self.school.name 
+        if self.get_teachers_names:
+            teachers_list = " - Professores: "
+            teachers_list += ", ".join(self.get_teachers_names)
+        else:
+            teachers_list = ""
+        return str(self.reference_year) + ': ' + self.name + "/" + self.school.name + teachers_list
 
 class Student(models.Model):
 
@@ -81,10 +92,6 @@ class Student(models.Model):
         list_of_schools.sort(key=lambda x:x.reference_year)
         return [item.__str__() for item in list_of_schools]
                     
-    @property
-    def get_teachers_names(self):
-        return list(self.teacher.values_list( \
-                    'name', flat=True))
 
     image = fields.ImageField(
             upload_to="images/",
@@ -125,7 +132,6 @@ class Student(models.Model):
 
     school_class = models.ManyToManyField(Class, blank=True)
 
-    teacher = models.ManyToManyField(Teacher, blank=True)
 
     def __str__(self):
         return "Estudante " + self.name
